@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Create account' if mode == 'register' else 'Sign in' }} — BookVerse{% endblock %}
+{% block content %}
+<section class="auth-layout"><div class="auth-art"><div class="auth-quote">“A reader lives<br>a thousand lives<br><em>before they die.</em>”</div><p>Find the words that stay with you.</p><div class="auth-orbit">✦</div></div><div class="auth-panel"><div class="eyebrow">{{ 'YOUR STORY BEGINS' if mode == 'register' else 'WELCOME BACK' }}</div><h1>{{ 'Join the story.' if mode == 'register' else 'Good to see you.' }}</h1><p class="form-intro">{{ 'Create an account to publish books and share your voice.' if mode == 'register' else 'Sign in to continue reading and writing.' }}</p>
+<form method="post" class="form-stack">
+{% if mode == 'register' %}<label>Username<input name="username" minlength="3" maxlength="40" required placeholder="Your author name"></label><label>Email address<input type="email" name="email" required placeholder="you@example.com"></label>{% else %}<label>Username or email<input name="identity" required autocomplete="username" placeholder="Your username or email"></label>{% endif %}
+<label>Password<input type="password" name="password" minlength="{{ 8 if mode == 'register' else 1 }}" required autocomplete="{{ 'new-password' if mode == 'register' else 'current-password' }}" placeholder="{{ 'At least 8 characters' if mode == 'register' else 'Your password' }}"></label>
+<button class="button button-dark full-button" type="submit">{{ 'Create my account' if mode == 'register' else 'Sign in' }} <span>→</span></button></form>
+<p class="switch-auth">{% if mode == 'register' %}Already a member? <a href="{{ url_for('login') }}">Sign in</a>{% else %}New to BookVerse? <a href="{{ url_for('register') }}">Create an account</a>{% endif %}</p></div></section>
+{% endblock %}
