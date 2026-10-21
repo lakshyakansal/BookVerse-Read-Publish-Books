@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ book.title }} — BookVerse{% endblock %}
+{% block content %}
+<section class="reading-page"><a class="back-link" href="{{ url_for('index') }}">← Back to discover</a><div class="book-detail-head">
+<div class="detail-cover {% if not book.cover_url %}cover-{{ book.id % 6 }}{% endif %}">{% if book.cover_url %}<img src="{{ book.cover_url }}" alt="Cover of {{ book.title }}">{% else %}<span class="cover-kicker">{{ book.genre|upper }}</span><span class="cover-art">✳</span><span class="cover-book-title">{{ book.title }}</span><span class="cover-by">BY {{ book.author.username|upper }}</span>{% endif %}</div>
+<div class="detail-copy"><span class="genre-pill">{{ book.genre }}</span><div class="eyebrow">A BOOKVERSE STORY</div><h1>{{ book.title }}</h1><p class="detail-byline">Written by <strong>{{ book.author.username }}</strong> · Published {{ book.published_at.strftime('%b %d, %Y') }}</p><p class="detail-description">{{ book.description }}</p><a class="button button-dark" href="#read-book">Start reading <span>↓</span></a>
+{% if current_user and current_user.id == book.author_id %}<div class="owner-actions"><a href="{{ url_for('edit_book', book_id=book.id) }}">Edit book</a><form method="post" action="{{ url_for('delete_book', book_id=book.id) }}" onsubmit="return confirm('Delete this book permanently?')"><button type="submit">Delete book</button></form></div>{% endif %}
+</div></div>
+<div class="reader" id="read-book"><div class="reader-top"><span>THE READING ROOM</span><span>{{ book.content.split()|length }} words</span></div><h2>{{ book.title }}</h2><div class="reader-byline">by {{ book.author.username }}</div><div class="reader-content">{{ book.content }}</div><div class="end-mark">✦ &nbsp; END OF THIS CHAPTER — KEEP WRITING YOUR STORY &nbsp; ✦</div></div>
+</section>
+{% endblock %}
