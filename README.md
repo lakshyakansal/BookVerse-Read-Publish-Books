@@ -1,47 +1,60 @@
 # BookVerse — Read & Publish Books
 
-A small community publishing website built with Flask, SQLAlchemy, and PostgreSQL. Readers can browse/search books and read full text. Registered authors can publish, edit, and delete their own books.
+A community publishing platform built with Flask, SQLAlchemy, and PostgreSQL.
+
+## Live website
+https://bookverse-read-publish-books.onrender.com
 
 ## Features
-- Register and sign in (passwords are hashed)
-- Browse books and search by title/description
-- Filter by genre
-- Publish a book with title, description, genre, optional cover image URL, and full text
-- Read published books
-- Manage your own books (edit/delete)
-- PostgreSQL for Render, SQLite fallback for local development
-- Responsive UI
+- User registration and sign-in with hashed passwords
+- Browse, search, and filter books
+- Publish and read books online
+- Authors can edit/delete their own books
+- Admin dashboard for site statistics, book management, and user management
+- Project manager and contact information in the footer and admin panel
+- PostgreSQL on Render and SQLite for local development
 
 ## Run locally
-1. Install Python 3.10+.
-2. Create and activate a virtual environment.
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Run:
-   ```bash
-   python app.py
-   ```
-5. Open http://127.0.0.1:5000
+```bash
+pip install -r requirements.txt
+```
+Set environment variables before running. On macOS/Linux:
+```bash
+export SECRET_KEY="use-a-long-random-secret"
+export ADMIN_EMAIL="your-admin-email@example.com"
+export SITE_MANAGER_NAME="Lakshya Kansal"
+export SITE_CONTACT_EMAIL="optional-contact@example.com"
+python app.py
+```
+On Windows PowerShell use `$env:ADMIN_EMAIL="your-admin-email@example.com"` etc. Open http://127.0.0.1:5000. Register using the exact email configured as `ADMIN_EMAIL` to receive administrator access.
 
-By default, local data is saved in `bookverse.db`.
+## Deploy/update on Render
+1. Push all project files to your GitHub repository.
+2. In Render, connect the repository using a Blueprint, or update your existing web service.
+3. Set `ADMIN_EMAIL` to the email address you will use for the administrator account. Set `SITE_MANAGER_NAME` and optional `SITE_CONTACT_EMAIL`.
+4. Keep `SECRET_KEY` private and keep `DATABASE_URL` connected to the Render PostgreSQL database.
+5. Deploy the latest commit. Sign in with the configured admin email and visit `/admin`.
 
-## Deploy on Render
-### Easiest method
-1. Create a GitHub repository and upload all files in this folder.
-2. In Render, choose **New + → Blueprint** and connect that repository.
-3. Render reads `render.yaml` and creates the web service and PostgreSQL database.
-4. Wait for the deploy to finish and open the generated URL.
+Build command: `pip install -r requirements.txt`  
+Start command: `gunicorn app:app`
 
-If you create the web service manually, use:
-- Build command: `pip install -r requirements.txt`
-- Start command: `gunicorn app:app`
-- Add `SECRET_KEY` as a long random secret
-- Add `DATABASE_URL` using a Render PostgreSQL connection string
+## Admin dashboard
+- URL: `/admin`
+- Admin access is granted when the signed-in user's email matches the `ADMIN_EMAIL` environment variable.
+- The dashboard lists users and books and provides actions to delete books and other user accounts.
+- If you already registered, set `ADMIN_EMAIL` to that account's email. Otherwise, set the variable first and then register with that email.
+- Never share your password or `SECRET_KEY`.
 
-## Notes before public launch
-This is an MVP starter, not a fully moderated commercial publishing platform. Add email verification, password reset, rate limiting/CSRF protection, content reporting/moderation, backups, and a clear copyright/takedown process before opening it to a large public audience. Authors should only upload content they own or have permission to publish. Cover images are entered as URLs; the app does not upload image files.
+## Project information
+- **Project:** BookVerse — Read & Publish Books
+- **Project manager:** `SITE_MANAGER_NAME` (default: Lakshya Kansal)
+- **Contact:** optional `SITE_CONTACT_EMAIL`
+- **Deployment:** Render
+- **Backend:** Flask / Python
+- **Database:** PostgreSQL on Render, SQLite locally
+
+## Before public launch
+This is an MVP starter. Before broad public use, add CSRF protection, rate limiting, email verification, password recovery, moderation/reporting, backups, and a copyright takedown process. Publish only content you own or have permission to share.
 
 ## Live deployment
 
