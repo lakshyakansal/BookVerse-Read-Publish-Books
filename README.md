@@ -42,3 +42,9 @@ If you create the web service manually, use:
 
 ## Notes before public launch
 This is an MVP starter, not a fully moderated commercial publishing platform. Add email verification, password reset, rate limiting/CSRF protection, content reporting/moderation, backups, and a clear copyright/takedown process before opening it to a large public audience. Authors should only upload content they own or have permission to publish. Cover images are entered as URLs; the app does not upload image files.
+
+## Live deployment
+
+**Live website:** [BookVerse — Read & Publish Books](https://bookverse-read-publish-books.onrender.com)
+
+Visit the deployed website to browse books, create an account, and publish or read stories.
