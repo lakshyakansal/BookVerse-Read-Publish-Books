@@ -1,12 +1,19 @@
 services:
   - type: web
-    name: bookverse
+    name: bookverse-read-publish-books
     runtime: python
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
+    plan: free
     envVars:
       - key: SECRET_KEY
         generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: SITE_MANAGER_NAME
+        value: Lakshya Kansal
+      - key: SITE_CONTACT_EMAIL
+        sync: false
       - key: DATABASE_URL
         fromDatabase:
           name: bookverse-db
