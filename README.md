@@ -2,8 +2,11 @@
 
 A community publishing platform built with Flask, SQLAlchemy, and PostgreSQL.
 
-## Live website
-https://bookverse-read-publish-books.onrender.com
+## Live deployment
+
+**Live website:** [BookVerse — Read & Publish Books](https://bookverse-read-publish-books.onrender.com)
+
+Visit the deployed website to browse books, create an account, and publish or read stories.
 
 ## Features
 - User registration and sign-in with hashed passwords
@@ -56,11 +59,7 @@ Start command: `gunicorn app:app`
 ## Before public launch
 This is an MVP starter. Before broad public use, add CSRF protection, rate limiting, email verification, password recovery, moderation/reporting, backups, and a copyright takedown process. Publish only content you own or have permission to share.
 
-## Live deployment
 
-**Live website:** [BookVerse — Read & Publish Books](https://bookverse-read-publish-books.onrender.com)
-
-Visit the deployed website to browse books, create an account, and publish or read stories.
 
 <div align="center">
 
