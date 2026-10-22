@@ -48,3 +48,9 @@ This is an MVP starter, not a fully moderated commercial publishing platform. Ad
 **Live website:** [BookVerse — Read & Publish Books](https://bookverse-read-publish-books.onrender.com)
 
 Visit the deployed website to browse books, create an account, and publish or read stories.
+
+<div align="center">
+
+Developed by Lakshya Kansal
+
+</div>
